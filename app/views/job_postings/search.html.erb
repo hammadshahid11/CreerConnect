@@ -1,0 +1,12 @@
+<!-- app/views/job_postings/your_search_form_page.html.erb -->
+<div id="search_results">
+  <!-- The Turbo Stream will replace this with the search results -->
+</div>
+
+<%= form_tag job_search_path, method: :get, remote: true do %>
+  <%= text_field_tag :q, params[:q], placeholder: 'Keywords' %>
+  <%= text_field_tag :location, params[:location], placeholder: 'Location' %>
+  <%= select_tag :job_type, options_for_select(['Full-time', 'Part-time', 'Contract'], params[:job_type]), include_blank: 'Job Type' %>
+  <%= text_field_tag :salary_range, params[:salary_range], placeholder: 'Salary Range' %>
+  <%= submit_tag 'Search' %>
+<% end %>

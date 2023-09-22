@@ -1,0 +1,17 @@
+<!-- app/views/saved_jobs/index.html.erb -->
+<h1>Your Saved Jobs</h1>
+
+<% if @saved_jobs.any? %>
+  <ul>
+    <% @saved_jobs.each do |saved_job| %>
+      <li>
+        <%= link_to saved_job.job_posting.title %>
+        <%# <%= link_to 'Remove', job_seeker_saved_job_path(@job_seeker, saved_job), method: :delete, data: { confirm: 'Are you sure?' } %> %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You haven't saved any jobs yet.</p>
+<% end %>
+
+<%= link_to 'Back', job_seeker_path(@job_seeker) %>

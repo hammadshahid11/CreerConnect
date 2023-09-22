@@ -1,0 +1,23 @@
+<!-- app/views/job_seekers/show.html.erb -->
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Job Seeker Profile</h1>
+
+          <p><strong>Name:</strong> <%= @job_seeker.first_name %> <%= @job_seeker.last_name %></p>
+          <p><strong>Bio:</strong> <%= @job_seeker.bio %></p>
+
+          <% if @job_seeker.resume.attached? %>
+            <p><strong>Resume:</strong> <%= link_to "Download Resume", rails_blob_path(@job_seeker.resume, disposition: "attachment") %></p>
+          <% end %>
+
+          <%= link_to "Back to Profiles", job_seekers_path, class: "btn btn-secondary" %>
+          <%= link_to "Edit Profile", edit_job_seeker_path(@job_seeker), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
