@@ -1,29 +1,48 @@
 <div class="container mt-5">
-  <h1>Job Postings</h1>
-  <%= link_to 'Search Jobs', job_search_path %>
-
-  <!-- Loop through job postings and display them -->
-  <% @job_postings.each do |job_posting| %>
-    <div class="job-posting">
-      <h2><strong>Title:</strong> <%= job_posting.title %></h2>
-      <p><strong>Company:</strong> <%= job_posting.company_name %></p>
-      <p><strong>Description:</strong> <%= job_posting.description %></p>
-      
-      <!-- Link to save job -->
-
-      <%= link_to 'Save Job', new_job_seeker_saved_job_path(job_seeker_id: @current_job_seeker.id, job_posting_id: job_posting.id), method: :post, class: 'btn btn-primary' %>
-      <%# <%= link_to 'Save Job', saved_jobs_path(job_seeker_id: @current_job_seeker.id, job_posting_id: job_posting.id), method: :post, class: 'btn btn-primary' %> %>
-      <!-- Link to unsave job -->
-      <%= link_to 'Unsave Job', job_seeker_saved_job_path(job_seeker_id: @current_job_seeker.id, id: job_posting.id), data:{turbo_method: :delete}, class: 'btn btn-danger' %>
-      
-      <!-- Add other job posting details here -->
-    </div>
-  <% end %>
-
-  <!-- Link to the index page of saved jobs -->
-  <%= link_to 'View Saved Jobs', job_seeker_saved_jobs_path(job_seeker_id: @current_job_seeker.id), class: 'btn btn-success' %>
-
-  <div class="pagination">
-    <%= will_paginate @job_postings %>
+  <div class="text-center">
+    <h1 class="mb-4">Job Postings</h1>
+    <%= link_to 'Search Jobs', job_search_path, class: 'btn btn-primary mb-4' %>
   </div>
+
+  <div class="row justify-content-center">
+    <% @job_postings.each do |job_posting| %>
+      <div class="col-md-8 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title"><strong>Title:</strong> <%= job_posting.title %></h2>
+            <p class="card-text"><strong>Company:</strong> <%= job_posting.company_name %></p>
+            <p class="card-text"><strong>Description:</strong> <%= job_posting.description %></p>
+            
+            <!-- Link to save job -->
+            <%= link_to 'Save Job', new_job_seeker_saved_job_path(job_seeker_id: @current_job_seeker.id, job_posting_id: job_posting.id), method: :post, class: 'btn btn-primary' %>
+            
+            <!-- Link to unsave job -->
+            <%= link_to 'Unsave Job', job_seeker_saved_job_path(job_seeker_id: @current_job_seeker.id, id: job_posting.id), data: { turbo_method: :delete }, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <!-- Link to the index page of saved jobs -->
+    <%= link_to 'View Saved Jobs', job_seeker_saved_jobs_path(job_seeker_id: @current_job_seeker.id), class: 'btn btn-success mb-4' %>
+  </div>
+
+  <div class="pagination justify-content-center ">
+  <%= will_paginate @job_postings, class: 'pagination' %>
 </div>
+
+</div>
+
+<style>
+  /* Additional Custom CSS Styles */
+  .card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Increase the bottom margin between cards */
+  }
+
+  /* Add more custom styles as needed */
+</style>
