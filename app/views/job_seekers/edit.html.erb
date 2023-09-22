@@ -1,0 +1,37 @@
+<!-- app/views/job_seekers/edit.html.erb -->
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center mb-4">Edit Job Seeker Profile</h1>
+
+      <%= form_for @job_seeker, url: job_seeker_path(@job_seeker), method: :patch, html: { class: 'form' } do |f| %>
+        <div class="form-group">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :bio %>
+          <%= f.text_area :bio, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :resume %>
+          <%= f.file_field :resume, class: 'form-control-file' %>
+        </div>
+
+        <div class="text-center">
+          <%= f.submit "Update Profile", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <%= link_to "Back to Profile", job_seeker_path(@job_seeker), class: 'btn btn-secondary mt-3' %>
+    </div>
+  </div>
+</div>

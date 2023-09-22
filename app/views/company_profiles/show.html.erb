@@ -1,0 +1,23 @@
+<!-- app/views/company_profiles/show.html.erb -->
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Company Profile</h1>
+
+          <p><strong>Name:</strong> <%= @company_profile.name %> </p>
+          <p><strong>Bio:</strong> <%= @company_profile.bio %></p>
+
+          <%= link_to "Back to Profiles", company_profiles_path, class: "btn btn-secondary" %>
+          <%= link_to "Edit Profile", edit_company_profile_path(@company_profile), class: "btn btn-primary" %>
+
+          <%= link_to "Create New Job Posting", new_company_profile_job_posting_path(@company_profile.id), class: "btn btn-primary" %>
+          <%= link_to "View Job Posting", company_profile_job_posting_path(@company_profile), class: "btn btn-primary" %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

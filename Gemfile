@@ -21,6 +21,21 @@ gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
+#gem for authetication
+gem 'devise'
+
+#gem for authrization
+gem 'cancancan'
+
+#gem for search 
+gem 'searchkick'
+ # select one this gem is with searchkick
+gem "opensearch-ruby" 
+
+
+#gem 'will_paginate' for pagination
+gem 'will_paginate'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
@@ -30,6 +45,9 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
+gem "bootstrap"
+
+gem "sassc-rails"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

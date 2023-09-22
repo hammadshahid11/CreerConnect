@@ -1,0 +1,20 @@
+<!-- app/views/job_postings/index.html.erb -->
+
+<div class="container mt-5">
+  <h1>Job Postings</h1>
+
+  <!-- Loop through job postings and display them -->
+  <% @job_postings.each do |job_posting| %>
+    <div class="job-posting">
+      <h2><%= job_posting.title %></h2>
+      <p><strong>Company:</strong> <%= job_posting.company_name %></p>
+      <p><strong>Description:</strong> <%= job_posting.description %></p>
+      <!-- Add other job posting details here -->
+    </div>
+  <% end %>
+
+  <!-- Pagination links -->
+  <div class="pagination">
+    <%= will_paginate @job_postings %>
+  </div>
+</div>
