@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <h1 class="text-center mb-4">Job Postings</h1>
 
-  <%= form_tag job_search_path, method: :get, remote: true, class: "mb-4" do %>
+  <%= form_tag job_search_path, method: :get, remote: true, id: 'search-form', class: "mb-4" do %>
     <div class="row justify-content-center">
       <div class="col-md-3">
         <%= text_field_tag :q, params[:q], class: "form-control", placeholder: 'Keywords' %>
@@ -19,31 +19,12 @@
   <% end %>
 
   <div class="row justify-content-center">
-    <% @job_postings.each do |job_posting| %>
-         <% if job_posting.status == 'approved' %>
-      <div class="col-md-8 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title"><strong>Title:</strong> <%= job_posting.title %></h2>
-            <p class="card-text"><strong>Company:</strong> <%= job_posting.company_name %></p>
-            <p class="card-text"><strong>Description:</strong> <%= job_posting.description %></p>
-            <p class="card-text"><strong>Salary:</strong> <%= job_posting.salary %></p>
-            <p class="card-text"><strong>Location:</strong> <%= job_posting.location %></p>
-
-            <!-- Link to save job -->
-            <%= link_to 'Save Job', new_job_seeker_saved_job_path(job_seeker_id: @current_job_seeker.id, job_posting_id: job_posting.id), method: :post, class: 'btn btn-primary' %>
-
-            <!-- Link to unsave job -->
-            <%= link_to 'Unsave Job', job_seeker_saved_job_path(job_seeker_id: @current_job_seeker.id, id: job_posting.id), data: { turbo_method: :delete }, class: 'btn btn-danger' %>
-
-            <!-- Link to apply job -->
-            <%= link_to 'Apply Job', new_job_application_path(job_posting_id: job_posting.id), class: 'btn btn-success' %>
-          </div>
-        </div>
+    <div class="col-md-8">
+      <div id="search-results">
+        <!-- Search results will be displayed here -->
+        <%= render 'search_results', job_postings: @job_postings %>
       </div>
-    <% end %>
-    <% end %>
-    
+    </div>
   </div>
 
   <div class="text-center">
@@ -51,9 +32,10 @@
     <%= link_to 'View Saved Jobs', job_seeker_saved_jobs_path(job_seeker_id: @current_job_seeker.id), class: 'btn btn-success mb-4' %>
   </div>
 
-  <div class="pagination justify-content-center ">
+  <div class="pagination justify-content-center">
     <%= will_paginate @job_postings, class: 'pagination' %>
   </div>
+  <div id="hi"></div>
 </div>
 
 <style>

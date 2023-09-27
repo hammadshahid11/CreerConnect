@@ -50,8 +50,14 @@ Rails.application.routes.draw do
 
   
   resources :job_seekers do
-    resources :saved_jobs
+    resources :saved_jobs do
+      member do
+       post 'save'
+      end
+    end
   end
+
+
 
   resources :company_profiles do
     resources :job_postings do

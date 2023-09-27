@@ -6,11 +6,11 @@
   
   <!-- Add your CSS and JavaScript links or references here -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
 </head>
 <body>
   <!-- Common header and navigation -->
@@ -22,7 +22,7 @@
         <li><%= link_to 'Home', root_path %></li>
 
         <!-- Job Postings link -->
-        
+
         <!-- Sign Out link -->
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
       </ul>
@@ -32,6 +32,25 @@
   <!-- Job Seeker-specific content -->
   <div class="job-seeker-content">
     <%= yield %>
+  </div>
+
+  <!-- Modals for creating and editing job seeker profiles -->
+  <!-- Create Job Seeker Modal -->
+  <div class="modal fade" id="createJobSeekerModal" tabindex="-1" role="dialog" aria-labelledby="createJobSeekerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Modal content for creating job seeker goes here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Job Seeker Modal -->
+  <div class="modal fade" id="editJobSeekerModal" tabindex="-1" role="dialog" aria-labelledby="editJobSeekerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Modal content for editing job seeker goes here -->
+      </div>
+    </div>
   </div>
 
   <!-- Common footer -->

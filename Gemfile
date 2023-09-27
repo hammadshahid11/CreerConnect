@@ -27,6 +27,11 @@ gem 'devise'
 #gem for authrization
 gem 'cancancan'
 
+#gem jquery rails 
+gem 'jquery-rails'
+  
+
+
 #gem for search 
 gem 'searchkick'
  # select one this gem is with searchkick

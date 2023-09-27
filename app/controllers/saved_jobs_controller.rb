@@ -9,9 +9,10 @@ class SavedJobsController < ApplicationController
       
 
     end
-    def new
+    def save
+    
       @job_seeker = JobSeeker.find(params[:job_seeker_id])
-      @job_posting = JobPosting.find(params[:job_posting_id])
+      @job_posting = JobPosting.find(params[:id])
     
       # Check if the job has already been saved by the job seeker
       existing_saved_job = SavedJob.find_by(job_seeker: @job_seeker, job_posting: @job_posting)
@@ -29,6 +30,7 @@ class SavedJobsController < ApplicationController
         end
       end
     end
+    
     
 
     # Create a new saved job for a job seeker

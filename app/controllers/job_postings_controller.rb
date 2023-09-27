@@ -50,36 +50,26 @@ class JobPostingsController < ApplicationController
 
 
       def search
+
         @query = params[:q]
         @location = params[:location]
         @salary_range = params[:salary_range]
-        
+      
         # Perform your search query
         search = JobPosting.search(@query, fields: [:title, :company_name])
-        
-        # Apply filters based on the presence of values in instance variables
       
-        
-        # if @location.present?
-        #   search = search.filter do
-        #      location: @location
-        #   end
-        # end
-        
-        # # Assuming salary_range is a range, you can filter within that range
-        # if @salary_range.present?
-        #   min_salary, max_salary = @salary_range.split('-').map(&:to_i)
-        #   search = search.filter do
-        #     range salary: { gte: min_salary, lte: max_salary }
-        #   end
-        # end
-        
+        # Apply filters based on the presence of values in instance variables
+        # ...
+      
         # Execute the search query
         @job_postings = search
-        
-        # Render the search results view and pass the search query as a local variable
-        render 'search_results', locals: { query: @query, job_postings: @job_postings }
+      
+        respond_to do |format|
+          format.html # Render the HTML view (for initial page load)
+          format.js   # Render the search results as a JavaScript response
+        end
       end
+      
       
 
  
