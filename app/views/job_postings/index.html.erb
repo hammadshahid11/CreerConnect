@@ -5,16 +5,27 @@
 
   <!-- Loop through job postings and display them -->
   <% @job_postings.each do |job_posting| %>
+   <% if job_posting.status == 'approved' %>
     <div class="job-posting">
       <h2><%= job_posting.title %></h2>
       <p><strong>Company:</strong> <%= job_posting.company_name %></p>
       <p><strong>Description:</strong> <%= job_posting.description %></p>
+        <%# <%= link_to "View Applicants", company_profile_job_posting_view_applicants_path(job_posting), class: "btn btn-success" %> %>
+
+    <%# <%= link_to "View Applicants", view_applicants_company_profile_job_posting_path(id: job_posting.id), class: "btn btn-success" %> %>
+
+  
+<%= link_to "View Applicants", company_profile_job_posting_view_applicants_path(company_profile_id: job_posting.company_profile.id, job_posting_id: job_posting.id), class: "btn btn-success" %>
+
       <!-- Add other job posting details here -->
     </div>
   <% end %>
+  <% end %>
+   
+
 
   <!-- Pagination links -->
-  <div class="pagination">
+  <%# <div class="pagination">
     <%= will_paginate @job_postings %>
-  </div>
+  </div> %>
 </div>

@@ -4,7 +4,7 @@ class JobPostingsController < ApplicationController
     def index
         
         # Display a list of all job postings (you may want to paginate here)
-        # @job_postings =JobPosting.all
+        @job_postings =JobPosting.all
         # @job_postings = JobPosting.all.paginate(page: params[:page], per_page: 5)
       end
 
@@ -21,7 +21,15 @@ class JobPostingsController < ApplicationController
    
     def show
         # Find the job posting using the company profile and job posting ID
-        # @job_posting = @company_profile.job_postings.find(params[:id])
+        #  @job_posting = @company_profile.job_postings.find(params[:id])
+        @company_profile = CompanyProfile.find(params[:id])
+        @job_postings = @company_profile.job_postings
+    
+      end
+
+      def view_applicants
+        @job_posting = JobPosting.find(params[:job_posting_id])
+        @job_applicants = @job_posting.job_applications
       end
       
 
@@ -40,20 +48,101 @@ class JobPostingsController < ApplicationController
       end
 
 
+
       def search
         @query = params[:q]
         @location = params[:location]
-        @job_type = params[:job_type]
         @salary_range = params[:salary_range]
-    
-        @job_postings = JobPosting.search(@query, fields: [:title, :company_name], where: { location: @location, job_type: @job_type, salary_range: @salary_range })
-    
-        # Additional filtering logic based on other criteria (industry, experience level, etc.)
-    
-        # Render the search results view
-        render 'search_results'
+        
+        # Perform your search query
+        search = JobPosting.search(@query, fields: [:title, :company_name])
+        
+        # Apply filters based on the presence of values in instance variables
       
+        
+        # if @location.present?
+        #   search = search.filter do
+        #      location: @location
+        #   end
+        # end
+        
+        # # Assuming salary_range is a range, you can filter within that range
+        # if @salary_range.present?
+        #   min_salary, max_salary = @salary_range.split('-').map(&:to_i)
+        #   search = search.filter do
+        #     range salary: { gte: min_salary, lte: max_salary }
+        #   end
+        # end
+        
+        # Execute the search query
+        @job_postings = search
+        
+        # Render the search results view and pass the search query as a local variable
+        render 'search_results', locals: { query: @query, job_postings: @job_postings }
       end
+      
+
+ 
+      # def search
+      #   # Initialize the search query
+      #   @query = params[:q]
+      #   @location = params[:location]
+      #  @salary_range = params[:salary_range]
+      #   search = JobPosting.search("*")
+       
+      #   # Define filters for your search
+      #   filters = []
+      
+      #   # Add filters based on the presence of values in instance variables
+      #   filters << { term: { title: @query } } if @query.present?
+      #   filters << { term: { location: @location } } if @location.present?
+        
+      #   if @salary_range.present?
+      #     min_salary, max_salary = @salary_range.split('-').map(&:to_i)
+      #     filters << { range: { salary: { gte: min_salary, lte: max_salary } } }
+      #   end
+      
+      #   # Apply all filters to the search query
+      #   search.filter(:bool, must: filters) unless filters.empty?
+      
+      #   # Execute the search query
+      #   @job_postings = search.execute
+        
+      #   # Render the search results view
+      #   render 'search_results'
+      # end
+
+      # def search
+      #   @query = params[:q]
+      #   @location = params[:location]
+      #   @salary_range = params[:salary_range]
+
+      
+      #   # Perform your search query
+      #   search = JobPosting.search(@query, fields: [:title, :company_name])
+      
+      #   # Define filters for your search
+      #   filters = []
+      
+      #   # Add filters based on the presence of values in instance variables
+      #   filters << { term: { title: @query } } if @query.present?
+      #   filters << { term: { location: @location } } if @location.present?
+      
+      #   if @salary_range.present?
+      #     min_salary, max_salary = @salary_range.split('-').map(&:to_i)
+      #     filters << { range: { salary: { gte: min_salary, lte: max_salary } } }
+      #   end
+      
+      #   # Apply all filters to the search query
+      #   filters.each { |filter| search = search.where(filter) }
+      
+      #   # Execute the search query
+      #   @job_postings = search.execute
+      
+      #   # Render the search results view
+      #   render 'search_results'
+      # end
+    
       
     def destroy
         @job_posting.destroy

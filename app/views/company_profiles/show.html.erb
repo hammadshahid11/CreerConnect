@@ -14,7 +14,7 @@
           <%= link_to "Edit Profile", edit_company_profile_path(@company_profile), class: "btn btn-primary" %>
 
           <%= link_to "Create New Job Posting", new_company_profile_job_posting_path(@company_profile.id), class: "btn btn-primary" %>
-          <%= link_to "View Job Posting", company_profile_job_posting_path(@company_profile), class: "btn btn-primary" %>
+          <%= link_to "View Job Posting", company_profile_job_postings_path(@company_profile), class: "btn btn-primary" %>
 
         </div>
       </div>

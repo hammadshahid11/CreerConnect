@@ -4,6 +4,7 @@
 
 <% if @job_postings.any? %>
   <ul>
+  
     <% @job_postings.each do |job_posting| %>
       <li>
         <h2><%= job_posting.title %></h2>
@@ -16,3 +17,5 @@
 <% else %>
   <p>No matching job postings found.</p>
 <% end %>
+
+<%= link_to 'Back', request.referer, class: 'btn btn-secondary' %>

@@ -33,7 +33,7 @@ class SavedJobsController < ApplicationController
 
     # Create a new saved job for a job seeker
     def create
-      debugger
+      # debugger
       @job_seeker = JobSeeker.find(params[:job_seeker_id])
       @job_posting = JobPosting.find(params[:job_posting_id])
   

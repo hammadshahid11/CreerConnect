@@ -14,7 +14,7 @@ class JobSeekersController < ApplicationController
     end
   
     def create
-        debugger
+        # debugger
         @job_seeker = current_user.build_job_seeker(job_seeker_params)
       
         if @job_seeker.save

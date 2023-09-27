@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_one :job_seeker, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
-
+  attribute :blocked, :boolean, default: false
   # Create a company profile for a company user after user creation
   # after_create :create_company_profile_if_company
   

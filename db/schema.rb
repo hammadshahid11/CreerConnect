@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_22_110928) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_26_064107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_110928) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
   create_table "company_profiles", force: :cascade do |t|
     t.string "name"
     t.string "contact_information"
@@ -50,6 +62,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_110928) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_company_profiles_on_user_id"
+  end
+
+  create_table "job_applications", force: :cascade do |t|
+    t.bigint "job_seeker_id", null: false
+    t.bigint "job_posting_id", null: false
+    t.text "cover_letter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_posting_id"], name: "index_job_applications_on_job_posting_id"
+    t.index ["job_seeker_id"], name: "index_job_applications_on_job_seeker_id"
   end
 
   create_table "job_postings", force: :cascade do |t|
@@ -63,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_110928) do
     t.bigint "company_profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "pending_review"
     t.index ["company_profile_id"], name: "index_job_postings_on_company_profile_id"
   end
 
@@ -75,6 +98,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_110928) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_job_seekers_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.string "messageable_type", null: false
+    t.bigint "messageable_id", null: false
+    t.bigint "job_application_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_application_id"], name: "index_messages_on_job_application_id"
+    t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable"
   end
 
   create_table "saved_jobs", force: :cascade do |t|
@@ -101,6 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_110928) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role"
+    t.boolean "blocked"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -108,8 +145,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_110928) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "company_profiles", "users"
+  add_foreign_key "job_applications", "job_postings"
+  add_foreign_key "job_applications", "job_seekers"
   add_foreign_key "job_postings", "company_profiles"
   add_foreign_key "job_seekers", "users"
+  add_foreign_key "messages", "job_applications"
   add_foreign_key "saved_jobs", "job_postings"
   add_foreign_key "saved_jobs", "job_seekers"
 end

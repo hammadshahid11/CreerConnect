@@ -1,0 +1,23 @@
+<!-- app/views/job_postings/view_applicants.html.erb -->
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>All Job Applicants for <%= @job_posting.title %></h1>
+
+      <% if @job_applicants.any? %>
+        <ul>
+          <% @job_applicants.each do |applicant| %>
+            
+            <strong>name:</strong> <%= applicant.job_seeker.first_name %><br>
+      <strong>Cover Letter:</strong> <%= applicant.cover_letter %>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No applicants found for this job posting.</p>
+      <% end %>
+
+      <%# <%= link_to "Back to Job Posting", job_posting_path(@job_posting), class: "btn btn-primary" %> %>
+    </div>
+  </div>
+</div>
