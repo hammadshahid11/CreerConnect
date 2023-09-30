@@ -15,7 +15,12 @@
           <% end %>
 
           <%= link_to "Back to Profiles", job_seekers_path, class: "btn btn-secondary" %>
-          <%= link_to "Edit Profile", edit_job_seeker_path(@job_seeker), class: "btn btn-primary" %>
+          <%# <%= link_to "Edit Profile", edit_job_seeker_path(@job_seeker), class: "btn btn-primary" %> 
+          <!-- Trigger to open Edit Job Seeker Modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editJobSeekerModal">
+  Edit Job Seeker Profile
+</button>
+
         </div>
       </div>
     </div>

@@ -16,6 +16,10 @@ class JobPostingsController < ApplicationController
       def new
         # @company_profile = CompanyProfile.find(params[:company_profile_id])
         @job_posting = @company_profile.job_postings.build
+        respond_to do |format|
+          format.html
+          format.js
+        end
       end
       
    
@@ -135,14 +139,17 @@ class JobPostingsController < ApplicationController
     
       
     def destroy
-        @job_posting.destroy
+      @job_posting = @company_profile.job_postings.find(params[:id])
 
+      if @job_posting.destroy
         respond_to do |format|
           format.html { redirect_to  company_profile_path(current_user.company_profile), notice: "Job posting was successfully deleted." }
         #   format.turbo_stream { render turbo_stream: turbo_stream.remove(@job_posting) }
-
-        # redirect_to company_profile_path(current_user.company_profile), notice: "Job posting was successfully deleted."
+        end
       end
+      
+        # redirect_to company_profile_path(current_user.company_profile), notice: "Job posting was successfully deleted."
+      
     end
 
 

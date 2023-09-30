@@ -19,62 +19,7 @@
   <!-- Common header and navigation -->
   <header>
     <!-- Your common header content here -->
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#"><h1>Welcome to CareerConnect</h1></a>
-      
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <!-- Home link -->
-          <li class="nav-item">
-            <%= link_to 'Home', root_path, class: "nav-link" %>
-          </li>
-
-          <% if user_signed_in? %>
-            <!-- User is signed in, show appropriate links -->
-            <% if can? :create, JobSeeker %>
-              <li class="nav-item">
-                <%= link_to 'Create Job Seeker Profile', new_job_seeker_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Display Job Listings', display_path, class: "nav-link" %>
-              </li>
-            <% end %>
-
-            <% if can? :create, CompanyProfile %>
-              <li class="nav-item">
-                <%= link_to 'Create Company Profile', new_company_profile_path, class: "nav-link" %>
-              </li>
-            <% end %>
-
-            <!-- Edit Profile link -->
-            <!-- Sign Out link -->
-            <li class="nav-item">
-              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete,
-                data: { turbo_method: :delete, turbo_frame: 'body' }, class: "nav-link" %>
-            </li>
-          <% else %>
-            <!-- User is not signed in, show sign-up link -->
-            <li class="nav-item">
-              <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
-            </li>
-            <!-- Add an admin signup link -->
-            <% if admin_signed_in? %>
-               <li class="nav-item">
-              <%= link_to 'SignOutAdmin', destroy_admin_session_path, method: :delete,
-                data: { turbo_method: :delete, turbo_frame: 'body' }, class: "nav-link" %>
-            </li>
-            <% else %>
-            <li class="nav-item"> 
-              <%= link_to 'Admin Login', new_admin_session_path, class: "nav-link" %>
-
-            
-            </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+   
   </header>
   
   <!-- Job Seeker-specific content -->
@@ -83,9 +28,6 @@
   </div>
 
   <!-- Common footer -->
-  <footer class="bg-dark text-light text-center py-3 mt-auto">
-    <!-- Your footer content here -->
-    &copy; 2023 CareerConnect
-  </footer>
+  
 </body>
 </html>

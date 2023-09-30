@@ -1,0 +1,42 @@
+<%= form_with(model: @job_seeker, local: true) do |form| %>
+  <% if @job_seeker.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@job_seeker.errors.count, "error") %> prohibited this profile from being saved:</h4>
+      <ul>
+        <% @job_seeker.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :first_name, class: "form-label" %>
+    <%= form.text_field :first_name, class: "form-control" %>
+    <small class="text-muted">Enter your first name (required).</small>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :last_name, class: "form-label" %>
+    <%= form.text_field :last_name, class: "form-control" %>
+    <small class="text-muted">Enter your last name (required).</small>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :bio, class: "form-label" %>
+    <%= form.text_area :bio, class: "form-control", id: "bio-textarea" %>
+    <small class="text-muted">
+      Enter a brief bio (maximum 500 characters). Character count: <span id="char-count">0</span>
+    </small>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :resume, class: "form-label" %>
+    <%= form.file_field :resume, class: "form-control" %>
+    <small class="text-muted">Upload your resume (PDF or Word document).</small>
+  </div>
+
+  <div class="text-center">
+          <%= form.submit "Submit ", class: 'btn btn-primary' %>
+        </div>
+<% end %>

@@ -11,9 +11,18 @@
           <p><strong>Bio:</strong> <%= @company_profile.bio %></p>
 
           <%= link_to "Back to Profiles", company_profiles_path, class: "btn btn-secondary" %>
-          <%= link_to "Edit Profile", edit_company_profile_path(@company_profile), class: "btn btn-primary" %>
-
-          <%= link_to "Create New Job Posting", new_company_profile_job_posting_path(@company_profile.id), class: "btn btn-primary" %>
+          <%= link_to 'Edit Company Profile', edit_company_profile_path(current_user.company_profile), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#EditCompanymodal-window', class: 'btn btn-primary'} %>
+                   <div id="EditCompanymodal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content"></div>
+                    </div>
+                  </div>
+          <%= link_to "Create New Job Posting", new_company_profile_job_posting_path(@company_profile.id),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#NewJobPostingmodal-window', class: 'btn btn-primary'} %>
+          <div id="NewJobPostingmodal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content"></div>
+                    </div>
+                  </div>
           <%= link_to "View Job Posting", company_profile_job_postings_path(@company_profile), class: "btn btn-primary" %>
 
         </div>

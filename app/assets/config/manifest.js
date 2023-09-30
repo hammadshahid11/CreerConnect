@@ -3,5 +3,6 @@
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
 //= link SearchResult.js
+//= link JobSeeker.js
 //= link jquery.min.js
 //= link jquery_ujs.js

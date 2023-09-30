@@ -14,7 +14,7 @@
 </head>
 <body>
   <!-- Common header and navigation -->
-  <header>
+  <%# <header>
     <!-- Your common header content here -->
     <nav>
       <ul>
@@ -24,10 +24,10 @@
         <!-- Job Postings link -->
 
         <!-- Sign Out link -->
-        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-      </ul>
+        <%# <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+      <%# </ul>
     </nav>
-  </header>
+  </header> %> 
   
   <!-- Job Seeker-specific content -->
   <div class="job-seeker-content">
@@ -40,15 +40,18 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <!-- Modal content for creating job seeker goes here -->
+          <%= render 'job_seekers/new'%> 
       </div>
     </div>
-  </div>
+  </div> 
 
   <!-- Edit Job Seeker Modal -->
+  
   <div class="modal fade" id="editJobSeekerModal" tabindex="-1" role="dialog" aria-labelledby="editJobSeekerModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <!-- Modal content for editing job seeker goes here -->
+        <%= render 'job_seekers/edit' %>
       </div>
     </div>
   </div>
