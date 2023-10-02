@@ -1,3 +1,4 @@
+
 <div class="container mt-5">
   <h1 class="text-center mb-4">Job Postings</h1>
 
@@ -13,11 +14,10 @@
         <%= text_field_tag :salary_range, params[:salary_range], class: "form-control", placeholder: 'Salary Range' %>
       </div>
       <div class="col-md-2">
-        <%= submit_tag 'Search', class: "btn btn-primary btn-block" %>
+        <%= submit_tag 'Search',id: "search-btn", class: "btn btn-primary btn-block" %>
       </div>
     </div>
   <% end %>
-
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div id="search-results">
@@ -48,4 +48,8 @@
   }
 
   /* Add more custom styles as needed */
-</style>
+</style>  
+<%= javascript_include_tag 'search_results', "data-turbo-track": "reload" %>
+
+
+

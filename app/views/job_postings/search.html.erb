@@ -22,7 +22,12 @@
                   <%= link_to 'Unsave Job', job_seeker_saved_job_path(job_seeker_id: current_user.job_seeker.id, id: job_posting.id), data: { turbo_method: :delete }, class: 'btn btn-danger'%>
 
                   <!-- Link to apply job -->
-                  <%= link_to 'Apply Job', new_job_application_path(job_posting_id: job_posting.id), class: 'btn btn-success' %> 
+                  <%= link_to 'Apply Job', new_job_application_path(job_posting_id: job_posting.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#ApplYJobmodal-window', class: 'btn btn-primary'}  %> 
+                <div id="ApplYJobmodal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content"></div>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>

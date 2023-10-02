@@ -5,9 +5,6 @@ class SavedJobsController < ApplicationController
     def index
       @job_seeker = JobSeeker.find(params[:job_seeker_id])
       @saved_jobs = @job_seeker.saved_jobs
-      
-      
-
     end
     def save
     

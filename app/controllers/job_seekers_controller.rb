@@ -1,30 +1,17 @@
 class JobSeekersController < ApplicationController
-     layout 'jobseeker'
+    #  layout 'jobseeker'
     before_action :authenticate_user!
     authorize_resource
     
-        # def new
-        #   if current_user.job_seeker.present?
-        #     redirect_to job_seeker_path(current_user.job_seeker)
-        #   else
-        #     @job_seeker = JobSeeker.new
-        #     respond_to do |format|
-        #       format.html
-
-        #     end
-        #   end
-        # end
-        def new
-      
+    def new
           @job_seeker =JobSeeker.new
           respond_to do |format|
             format.html
             format.js 
           end
-        end
+    end
   
       def create
-      
         @job_seeker = current_user.build_job_seeker(job_seeker_params)
       
         if @job_seeker.save
@@ -36,35 +23,18 @@ class JobSeekersController < ApplicationController
       
     
       def show
-        
         @job_seeker = current_user.job_seeker
         if @job_seeker.nil?
           redirect_to new_job_seeker_path, notice: "Please create your job seeker profile."
         end
       end
-       # Other actions (e.g., show, edit, update, destroy) can be defined here
-    # ...
-    
-    # def edit
-    #     @job_seeker = current_user.job_seeker
-    #     if @job_seeker.nil?
-    #       redirect_to new_job_seeker_path, notice: "Please create your job seeker profile."
-    #     else
-    #       render 'edit'
-    #     end
-    #   end
+     
     def edit
-    
-      @job_seeker = current_user.job_seeker
-      # if @job_seeker.nil?
-      #   redirect_to new_job_seeker_path, notice: "Please create your job seeker profile."
-      # else
-    
+       @job_seeker = current_user.job_seeker
         respond_to do |format|
           format.html
-          format.js  # Create an edit.js.erb view
-        # end
-          end
+          format.js  
+         end
     end
     
 

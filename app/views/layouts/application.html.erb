@@ -11,8 +11,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= javascript_include_tag 'SearchResult', "data-turbo-track": "reload" %>
-    <%= javascript_include_tag 'JobSeeker', "data-turbo-track": "reload" %>
+    <%= javascript_include_tag 'search_results', "data-turbo-track": "reload" %>
+    <%= javascript_include_tag 'job_seeker', "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -36,11 +36,9 @@
              <% if current_user.job_seeker.present? %>
             <!-- User has a job seeker profile, show "Edit Profile" and "Show Profile" links -->
             <li class="nav-item">
-              <%# <%= link_to 'Edit Profile', edit_job_seeker_path(current_user.job_seeker), class: "nav-link" %> 
+              
              <%= link_to 'EditJobSeekerProfile', edit_job_seeker_path(current_user.job_seeker),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#edit_jobseeker', class: 'nav-link'}  %>
-            
-
-              <div id="edit_jobseeker" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div id="edit_jobseeker" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content"></div>
                 </div>
@@ -55,8 +53,6 @@
           <% else %>
             <!-- User does not have a job seeker profile, show "Create Job Seeker Profile" link -->
             <li class="nav-item">
-               <%# <%= link_to 'Create Job Seeker Profile', "javascript:void(0);", class: "nav-link", id: "createJobSeekerLink" %> 
-           <%# <button class="btn btn-primary" id="createJobSeekerLink">Create Job Seeker Profile</button> %>
             <%= link_to 'create job seeker', new_job_seeker_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'nav-link'}  %>
               <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -84,10 +80,6 @@
                   <%= link_to 'Show Company Profile', company_profile_path(current_user.company_profile), class: "nav-link" %>
                 </li>
               <% else %>
-                <!-- User does not have a company profile, show "Create Company Profile" link -->
-                <%# <li class="nav-item">
-                  <%= link_to 'Create Company Profile', new_company_profile_path, class: "nav-link" %>
-                <%# </li> %> 
                 <%= link_to 'Create Company Profile', new_company_profile_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#NewCompanymodal-window', class: 'nav-link'}  %>
                   <div id="NewCompanymodal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -106,20 +98,22 @@
             </li>
           <% else %>
             <!-- User is not signed in, show sign-up link -->
-            <li class="nav-item">
-              <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
-            </li>
+            
             <!-- Add an admin signup link -->
             <% if admin_signed_in? %>
                <li class="nav-item">
               <%= link_to 'SignOutAdmin', destroy_admin_session_path, method: :delete,
                 data: { turbo_method: :delete, turbo_frame: 'body' }, class: "nav-link" %>
             </li>
+            <li class="nav-item">
+                  <%= link_to 'Dashboard', user_management_admins_dashboard_index_path, class: "nav-link" %>
+            </li>
             <% else %>
-            <li class="nav-item"> 
-              <%= link_to 'Admin Login', new_admin_session_path, class: "nav-link" %>
-
-            
+              <li class="nav-item"> 
+                <%= link_to 'Admin Login', new_admin_session_path, class: "nav-link" %>
+              </li>
+            <li class="nav-item">
+              <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
             </li>
             <% end %>
           <% end %>
@@ -129,13 +123,13 @@
    
   </header>
 
-         <p class="notice"><%= notice %></p> 
-       <p class="alert"><%= alert %></p>
-
+    <p class="notice"><%= notice %></p> 
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
-  <footer class="bg-dark text-light text-center py-3 mt-auto">
-    <!-- Your footer content here -->
-    &copy; 2023 CareerConnect
-  </footer>
+  <%# <footer class="bg-dark text-light text-center py-3 fixed-bottom">
+  <!-- Your footer content here -->
+  &copy; 2023 CareerConnect
+</footer> %>
+
 </html>

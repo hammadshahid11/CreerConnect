@@ -1,4 +1,4 @@
-  
+
   $(document).ready(function() {
     
     $('#search-form').submit(function (e) {
@@ -6,7 +6,7 @@
       e.preventDefault();
   
       var formData = $(this).serialize();
-      
+      console.log(formData);
       $.ajax({
         url: $(this).attr('action'),
         type: 'GET',
@@ -21,6 +21,5 @@
         },
       });
     });
-  
   });
   

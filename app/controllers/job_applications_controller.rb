@@ -5,6 +5,10 @@ class JobApplicationsController < ApplicationController
     def new
       @job_posting = JobPosting.find(params[:job_posting_id]) # Retrieve the job posting
       @job_application = JobApplication.new
+      respond_to do |format|
+        format.html
+        format.js 
+      end
     end
 
 

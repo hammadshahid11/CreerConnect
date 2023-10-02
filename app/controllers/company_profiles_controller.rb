@@ -4,18 +4,15 @@ class CompanyProfilesController < ApplicationController
     authorize_resource # Use CanCanCan for authorization
   
       def new
-        
           @company_profile = CompanyProfile.new
           respond_to do |format|
             format.html
             format.js 
           end
-        
       end
   
     def create
       @company_profile = current_user.build_company_profile(company_profile_params)
-  
       if @company_profile.save
         redirect_to @company_profile
       else
@@ -28,7 +25,6 @@ class CompanyProfilesController < ApplicationController
       if @company_profile.nil?
         redirect_to new_company_profile_path, notice: "Please create your company profile."
       end
-  
     end
   
     def edit
