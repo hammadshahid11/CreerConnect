@@ -60,14 +60,14 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Pending Job Listing Rows -->
+          <!-- Pending Job Listing Rows -->
             <% @job_postings.each do |job_posting| %>
               <tr>
                 <td><%= job_posting.title %></td>
                 <!-- Add more job listing attributes here -->
                 <td>
-                   <%= button_to 'Approve', approve_job_listing_admins_dashboard_path(job_posting.id), method: :post, class: "btn btn-success btn-sm", data: { confirm: 'Approve this job listing?' } %>
-        <%= button_to 'Disapprove', disapprove_job_listing_admins_dashboard_path(job_posting.id), method: :post, class: "btn btn-danger btn-sm", data: { confirm: 'Disapprove this job listing?' } %>
+                  <%= button_to 'Approve', approve_job_listing_admins_dashboard_path(job_posting.id), method: :post, class: "btn btn-success btn-sm", data: { confirm: 'Approve this job listing?' } %>
+                  <%= button_to 'Disapprove', disapprove_job_listing_admins_dashboard_path(job_posting.id), method: :post, class: "btn btn-danger btn-sm", data: { confirm: 'Disapprove this job listing?' } %>
                 </td>
               </tr>
             <% end %>

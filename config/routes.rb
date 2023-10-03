@@ -69,7 +69,7 @@ Rails.application.routes.draw do
 
   get 'job_postings/display', to: 'job_postings#display', as: 'display'
   get 'job_postings/search', to: 'job_postings#search', as: 'job_search'
-  root 'home#index'
+  root 'job_postings#display'
 
 
 

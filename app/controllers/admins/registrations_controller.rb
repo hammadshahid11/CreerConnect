@@ -16,7 +16,6 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    # Add any additional permitted parameters here
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 end

@@ -1,17 +1,41 @@
 <!-- app/views/saved_jobs/index.html.erb -->
-<h1>Your Saved Jobs</h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <h1 class="text-center mb-4 display-4">Your Saved Jobs</h1>
 
-<% if @saved_jobs.any? %>
-  <ul>
-    <% @saved_jobs.each do |saved_job| %>
-      <li>
-        <%= link_to saved_job.job_posting.title %>
-  
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>You haven't saved any jobs yet.</p>
-<% end %>
+      <% if @saved_jobs.any? %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Company Name</th>
+              <th>Salary</th>
+              <th>Location</th>
+              <th>Qualifications</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @saved_jobs.each do |saved_job| %>
+              <tr>
+                <td>
+                  <%=  saved_job.job_posting.title %>
+                </td>
+                <td><%= saved_job.job_posting.company_name %></td>
+                <td><%= saved_job.job_posting.salary %></td>
+                <td><%= saved_job.job_posting.location %></td>
+                <td><%= saved_job.job_posting.qualifications %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="alert alert-info">
+          You haven't saved any jobs yet.
+        </div>
+      <% end %>
 
-<%= link_to 'Back', job_seeker_path(@job_seeker) %>
+      <%= link_to 'Back', job_seeker_path(@job_seeker), class: 'btn btn-secondary mt-3' %>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,11 @@
 class JobPostingsController < ApplicationController
     before_action :set_company_profile, only: [:new, :create, :destroy]
     #  before_action :set_job_posting
+    before_action :authenticate_user!
     layout false, only: [:search]
+    
     def index
-        @job_postings =JobPosting.all
+        @job_postings = JobPosting.all
     end
 
     def display
@@ -43,8 +45,8 @@ class JobPostingsController < ApplicationController
       end
     end
 
-      def search
-        @query = params[:q]
+    def search
+      @query = params[:q]
         @location = params[:location]
         @salary_range = params[:salary_range]
       
@@ -65,7 +67,7 @@ class JobPostingsController < ApplicationController
           format.html # Render the HTML view (for initial page load)
           format.js   # Render the search results as a JavaScript response
         end
-      end 
+    end 
     
     def destroy
       @job_posting = @company_profile.job_postings.find(params[:id])
@@ -86,7 +88,7 @@ class JobPostingsController < ApplicationController
         @job_posting = @company_profile.job_postings.find(params[:id])
     end
     def job_posting_params
-        # Define the permitted parameters for your JobPosting model here
-        params.require(:job_posting).permit(:title, :company_name, :description, :location, :salary, :qualifications, :application_instructions)
+      # Define the permitted parameters for your JobPosting model here
+      params.require(:job_posting).permit(:title, :company_name, :description, :location, :salary, :qualifications, :application_instructions)
     end
 end

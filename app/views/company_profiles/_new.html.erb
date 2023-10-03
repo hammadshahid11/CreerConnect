@@ -3,15 +3,14 @@
 
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal">x</button>
-  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+  <h4 class="modal-title" id="myModalLabel"></h4>
 </div>
 <div class="modal-body">
-  *Modal content comes here*
   <div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h1 class="mb-4">Create Company Profile</h1>
-      <%= form_with(model: @company_profile, local: true) do |form| %>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1 class="mb-4">Create Company Profile</h1>
+        <%= form_with(model: @company_profile, local: true) do |form| %>
         <% if @company_profile.errors.any? %>
           <div class="alert alert-danger">
             <h4><%= pluralize(@company_profile.errors.count, "error") %> prohibited this profile from being saved:</h4>
@@ -51,7 +50,7 @@
 
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary">Save</button>
+  
 </div>
 
 <script>

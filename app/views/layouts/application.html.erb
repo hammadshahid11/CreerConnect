@@ -11,7 +11,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= javascript_include_tag 'search_results', "data-turbo-track": "reload" %>
+    
     <%= javascript_include_tag 'job_seeker', "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -26,11 +26,12 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <!-- Home link -->
+          <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'Home', root_path, class: "nav-link" %>
           </li>
 
-          <% if user_signed_in? %>
+          
             <!-- User is signed in, show appropriate links -->
             <% if can? :create, JobSeeker %>
              <% if current_user.job_seeker.present? %>
@@ -101,6 +102,7 @@
             
             <!-- Add an admin signup link -->
             <% if admin_signed_in? %>
+             
                <li class="nav-item">
               <%= link_to 'SignOutAdmin', destroy_admin_session_path, method: :delete,
                 data: { turbo_method: :delete, turbo_frame: 'body' }, class: "nav-link" %>
@@ -114,6 +116,9 @@
               </li>
             <li class="nav-item">
               <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
+            </li>
+             <li class="nav-item">
+              <%= link_to 'Log In', new_user_session_path, class: "nav-link" %>
             </li>
             <% end %>
           <% end %>
