@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Include your CSS and JavaScript here -->
   <title>Job Seeker - CareerConnect</title>
   
-  <!-- Add your CSS and JavaScript links or references here -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -12,22 +10,21 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
   
-  <!-- Add Bootstrap CSS link -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
-  <!-- Common header and navigation -->
+  
   <header>
-    <!-- Your common header content here -->
+   
    
   </header>
   
-  <!-- Job Seeker-specific content -->
+  
   <div class="container mt-5 flex-grow-1">
     <%= yield %>
   </div>
 
-  <!-- Common footer -->
+  
   
 </body>
 </html>

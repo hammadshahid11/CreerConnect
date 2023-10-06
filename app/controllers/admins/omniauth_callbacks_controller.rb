@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
-class Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  
+module Admins
+  class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  end
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
-class Admins::PasswordsController < Devise::PasswordsController
-  
+module Admins
+  class PasswordsController < Devise::PasswordsController
+  end
 end

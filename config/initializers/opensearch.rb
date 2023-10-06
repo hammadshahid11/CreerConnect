@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # # config/initializers/opensearch.rb
 
 # require 'elasticsearch'
@@ -10,12 +11,9 @@
 #   # Add any additional configuration options as needed
 # )
 
-
 # config/initializers/opensearch.rb
 
 # require 'opensearch'
-
-
 
 # # config/initializers/opensearch.rb
 

@@ -1,44 +1,10 @@
-<!-- app/views/job_seekers/edit.html.erb -->
-
-
-<!-- app/views/job_seekers/edit.html.erb -->
-
-<%# <div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h1 class="text-center mb-4">Edit Job Seeker Profile</h1>
-
-      <%= form_for @job_seeker, url: job_seeker_path(@job_seeker), method: :patch, html: { class: 'form' } do |f| %>
-        <%# <%= render 'job_seekers/form', f: f %>
-        
-      <%# <% end %>
-
-      <%# <%= link_to "Back to Profile", job_seeker_path(@job_seeker), class: 'btn btn-secondary mt-3' %>
-    <%# </div>
-  </div>
-</div>  %>
-
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal">x</button>
-  <h4 class="modal-title" id="myModalLabel"></h4>
-</div>
-<div class="modal-body">
-  <div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h1 class="text-center mb-4">Edit Job Seeker Profile</h1>
-      <%= render 'job_seekers/form' %>
+<div class="modal-body" >
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div>
+            <h1 class="text-center mb-4">Edit Job Seeker Profile</h1>
+            <%= render 'job_seekers/form' %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div> 
-</div>
-<div class="modal-footer">
-</div>
-
-
-
-
-
-
-<!-- Include the modal trigger link for editing here if needed -->
-<!-- Example: <a href="#" id="editProfileLink">Edit Profile</a> -->

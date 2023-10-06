@@ -1,10 +1,4 @@
-<!-- app/views/company_profiles/new.html.erb -->
 
-
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal">x</button>
-  <h4 class="modal-title" id="myModalLabel"></h4>
-</div>
 <div class="modal-body">
   <div class="container mt-5">
     <div class="row justify-content-center">
@@ -27,9 +21,7 @@
           <%= form.text_field :name, class: "form-control" %>
           <small class="text-muted">Enter your company name (required).</small>
         </div>
-
-     
-
+        
         <div class="mb-3">
           <%= form.label :bio, class: "form-label" %>
           <%= form.text_area :bio, class: "form-control", id: "bio-textarea" %>
@@ -48,9 +40,6 @@
   </div>
 </div>
 
-</div>
-<div class="modal-footer">
-  
 </div>
 
 <script>

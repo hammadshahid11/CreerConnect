@@ -1,5 +1,5 @@
 <%= form_with(model: @company_profile, url: @company_profile.new_record? ? company_profiles_path : company_profile_path, method: @company_profile.new_record? ? :post : :patch) do |form| %>
-  <!-- Form fields for company profile -->
+
   <%= form.label :first_name %>
   <%= form.text_field :first_name %>
 

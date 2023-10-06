@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCompanyProfiles < ActiveRecord::Migration[7.0]
   def change
     create_table :company_profiles do |t|
