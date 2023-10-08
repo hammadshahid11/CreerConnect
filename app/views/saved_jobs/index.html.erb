@@ -16,15 +16,15 @@
             </tr>
           </thead>
           <tbody>
-            <% @saved_jobs.each do |saved_job| %>
+            <% @saved_jobs.each do |job_posting| %>
               <tr>
                 <td>
-                  <%=  saved_job.job_posting.title %>
+                  <%=  job_posting.title %>
                 </td>
-                <td><%= saved_job.job_posting.company_name %></td>
-                <td><%= saved_job.job_posting.salary %></td>
-                <td><%= saved_job.job_posting.location %></td>
-                <td><%= saved_job.job_posting.qualifications %></td>
+                <td><%= job_posting.company_name %></td>
+                <td><%= job_posting.salary %></td>
+                <td><%= job_posting.location %></td>
+                <td><%= job_posting.qualifications %></td>
               </tr>
             <% end %>
           </tbody>

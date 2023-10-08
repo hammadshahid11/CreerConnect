@@ -35,17 +35,16 @@ Rails.application.routes.draw do
 
   resources :job_applications
 
-  resources :job_seekers do
-    resources :saved_jobs do
-      member do
-        post 'save'
-      end
+  resources :job_seekers
+
+  resources :saved_jobs do
+    member do
+      post 'save'
     end
   end
 
   resources :company_profiles do
     resources :job_postings do
-      # Custom route for viewing job applicants for a specific job posting
       get 'view_applicants', to: 'job_postings#view_applicants'
     end
   end
