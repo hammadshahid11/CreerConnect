@@ -41,9 +41,7 @@ class JobSeekersController < ApplicationController
     if @job_seeker.update(job_seeker_params)
       redirect_to @job_seeker, notice: 'Profile updated successfully.'
     else
-
       render partial: 'job_seekers/edit', status: :unprocessable_entity
-
     end
   end
 

@@ -14,7 +14,7 @@
             <p><strong>Resume:</strong> <%= link_to "Download Resume", rails_blob_path(@job_seeker.resume, disposition: "attachment") %></p>
           <% end %>
 
-          <%= link_to "Back to Profiles", job_seekers_path, class: "btn btn-secondary" %>
+          <%= link_to "Back to JobPostings", display_path, class: "btn btn-secondary" %>
         
           <%= link_to 'EditJobSeekerProfile', edit_job_seeker_path(current_user.job_seeker),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#edit_jobseeker', class: 'btn btn-primary'}  %>
              <div id="edit_jobseeker" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

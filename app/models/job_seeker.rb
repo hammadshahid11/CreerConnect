@@ -3,8 +3,6 @@
 class JobSeeker < ApplicationRecord
   belongs_to :user
 
-  # has_many :saved_jobs, dependent: :destroy
-  # has_many :job_postings, through: :saved_jobs
   has_and_belongs_to_many :job_postings, join_table: 'saved_jobs'
 
   has_many :job_applications, dependent: :destroy

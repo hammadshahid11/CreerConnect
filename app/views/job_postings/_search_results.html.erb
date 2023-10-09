@@ -16,7 +16,6 @@
                   <p class="card-text"><strong>Salary:</strong> <%= job_posting.salary %></p>
                   <p class="card-text"><strong>Location:</strong> <%= job_posting.location %></p>
 
-                 
                   <% if current_user.job_seeker? && current_user.job_seeker.present? %>
                      <% if current_user.job_seeker.job_postings.exists?(job_posting.id) %>
                       <%= link_to 'Unsave Job', saved_job_path(job_posting), method: :delete, 
@@ -35,18 +34,19 @@
                       </div>
                   <% end %>
 
-
-                 
                 </div>
               </div>
             </div>
           <% end %>
         <% end %>
+        
       </div>
+       
     </div>
+    <%= link_to 'Back', request.referer, class: 'btn btn-secondary mr-2' %>
   </div>
 <% else %>
   <p>No matching job postings found.</p>
 <% end %>
 
-<%= link_to 'Back', request.referer, class: 'btn btn-secondary' %>
+
