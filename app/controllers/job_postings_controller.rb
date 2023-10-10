@@ -11,7 +11,7 @@ class JobPostingsController < ApplicationController
   end
 
   def display
-    @job_postings = JobPosting.paginate(page: params[:page], per_page: 2)
+    @job_postings = JobPosting.paginate(page: params[:page], per_page: 3)
     @current_job_seeker = current_user.job_seeker
   end
 
