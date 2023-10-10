@@ -14,7 +14,7 @@ RSpec.describe 'JobSeekers', type: :request do
     end
 
     it 'responds with  unauthenticated user' do
-      get new_job_seeker_path, xhr: true # xhr true is for ajax request
+      get new_job_seeker_path, xhr: true
       expect(response).to have_http_status(:unauthorized)
     end
   end

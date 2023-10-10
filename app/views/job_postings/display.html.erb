@@ -30,12 +30,12 @@
     <%= link_to 'View Saved Jobs',saved_jobs_path(job_seeker_id: @current_job_seeker.id), class: 'btn btn-success mb-4' %>
    </div>
   <% end %>
-  <div class="pagination justify-content-center">
+  <div class="custom-pagination">
     <%= will_paginate @job_postings, class: 'pagination' %>
   </div>
   <div id="hi"></div>
 </div>
-
+<%= stylesheet_link_tag "layout_style", "data-turbo-track": "reload" %>
 <style>
 
   .card {

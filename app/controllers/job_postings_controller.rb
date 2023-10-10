@@ -6,7 +6,8 @@ class JobPostingsController < ApplicationController
   layout false, only: [:search]
 
   def index
-    @job_postings = JobPosting.all
+    @company_profile = CompanyProfile.find(params[:company_profile_id])
+    @job_postings = @company_profile.job_postings
   end
 
   def display
@@ -90,8 +91,6 @@ class JobPostingsController < ApplicationController
     @job_posting = @company_profile.job_postings.find(params[:id])
   end
 
-  private
-  
   def job_posting_params
     params.require(:job_posting).permit(:title, :company_name, :description, :location, :salary, :qualifications,
                                         :application_instructions)

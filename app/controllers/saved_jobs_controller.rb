@@ -21,12 +21,12 @@ class SavedJobsController < ApplicationController
     job_posting_id = params[:id]
     @job_posting = JobPosting.find(job_posting_id)
 
-    if @job_seeker.job_postings.exists?(job_posting_id)
-      @job_seeker.job_postings.delete(job_posting_id)
-      redirect_to saved_jobs_path(job_seeker_id: @job_seeker.id), notice: 'Job removed from saved list.'
-    end
+    return unless @job_seeker.job_postings.exists?(job_posting_id)
+
+    @job_seeker.job_postings.delete(job_posting_id)
+    redirect_to saved_jobs_path(job_seeker_id: @job_seeker.id), notice: 'Job removed from saved list.'
   end
- 
+
   private
 
   def saved_job_params

@@ -5,6 +5,6 @@ FactoryBot.define do
     email { Faker::Internet.unique.email }
     password { 'password123' }
 
-    role { 'job_seeker' } # Randomly select a role from available roles
+    role { 'job_seeker' }
   end
 end
