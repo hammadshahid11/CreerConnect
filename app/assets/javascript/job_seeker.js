@@ -14,18 +14,6 @@ $('#editProfileLink').on('click', function() {
     });
   });
   
-  // Function to open the create profile modal
-  // $('#createProfileLink').on('click', function() {
-  //   $.ajax({
-  //     url: '/job_seekers/new',
-  //     method: 'GET',
-  //     success: function(response) {
-  //       $('#jobSeekerModal .modal-content').html(response);
-  //       $('#jobSeekerModal').modal('show');
-  //     }
-  //   });
-  // });
- 
   $('#createJobSeekerLink').on('click', function() {
     console.log ("hi");
         $.ajax({
