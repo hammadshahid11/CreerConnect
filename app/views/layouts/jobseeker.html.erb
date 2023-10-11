@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Job Seeker - CareerConnect</title>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <div class="job-seeker-content">
+    <%= yield %>
+  </div>
+
+
+  <div class="modal fade" id="createJobSeekerModal" tabindex="-1" role="dialog" aria-labelledby="createJobSeekerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <%= render 'job_seekers/new'%> 
+      </div>
+    </div>
+  </div> 
+
+  
+  
+  <div class="modal fade" id="editJobSeekerModal" tabindex="-1" role="dialog" aria-labelledby="editJobSeekerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%= render 'job_seekers/edit' %>
+      </div>
+    </div>
+  </div>
+
+  
+  <footer>
+  
+  </footer>
+</body>
+</html>

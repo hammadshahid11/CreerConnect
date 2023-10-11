@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="mb-4">All Job Applicants for <%= @job_posting.title %></h1>
+
+      <% if @job_applicants.any? %>
+        <ul class="list-group">
+          <% @job_applicants.each do |applicant| %>
+            <li class="list-group-item">
+              <h4 class="mb-0"><strong>Name:</strong> <%= applicant.job_seeker.first_name %></h4>
+              <p><strong>Cover Letter:</strong> <%= applicant.cover_letter %></p>
+            </li>
+          <% end %>
+        </ul> 
+      <% else %>
+        <div class="alert alert-info" role="alert">
+          No applicants found for this job posting.
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

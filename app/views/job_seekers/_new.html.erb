@@ -1,0 +1,21 @@
+
+<script>
+  const bioTextarea = document.getElementById('bio-textarea');
+  const charCount = document.getElementById('char-count');
+
+  bioTextarea.addEventListener('input', function() {
+    const chars = this.value.length;
+    charCount.textContent = chars;
+  });
+</script>  
+
+<div class="modal-body">
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="mb-4">Create Job Seeker Profile</h1>
+        <%= render 'job_seekers/form' %>
+        <%= link_to "Back to Profiles", job_seekers_path, class: "btn btn-secondary mt-3" %>
+     </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  sender_id: 
+  receiver_id: 
+  messageable: one
+  messageable_type: Messageable
+  job_application: one
+
+two:
+  content: MyText
+  sender_id: 
+  receiver_id: 
+  messageable: two
+  messageable_type: Messageable
+  job_application: two
