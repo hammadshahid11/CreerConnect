@@ -17,29 +17,36 @@
                   <p class="card-text"><strong>Location:</strong> <%= job_posting.location %></p>
 
                   <% if current_user.job_seeker? && current_user.job_seeker.present? %>
-                    <%= link_to 'Save Job', save_job_seeker_saved_job_path(@current_job_seeker.id, job_posting.id),
-                     method: :post, class: 'btn btn-primary'%>
-                    <%= link_to 'Unsave Job', job_seeker_saved_job_path(job_seeker_id: @current_job_seeker.id, id: job_posting.id), 
-                     data: { turbo_method: :delete }, class: 'btn btn-danger' %>
+                     <% if current_user.job_seeker.job_postings.exists?(job_posting.id) %>
+                      <%= link_to 'Unsave Job', saved_job_path(job_posting), method: :delete, 
+                      data: { turbo_method: :delete }, class: 'btn btn-danger' %>
+                      <% else %>
+                      <%= link_to 'Save Job', save_saved_job_path( job_posting),
+                      method: :post, class: 'btn btn-primary'%>
+                      
+                    <% end %>
                     <%= link_to 'Apply Job', new_job_application_path(job_posting_id: job_posting.id), 
-                    {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#ApplYJobmodal-window', class: 'btn btn-primary'}  %> 
+                      {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#ApplYJobmodal-window', class: 'btn btn-primary'}  %> 
+                      <div id="ApplYJobmodal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content"></div>
+                        </div>
+                      </div>
                   <% end %>
 
-                  <div id="ApplYJobmodal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content"></div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           <% end %>
         <% end %>
+        
       </div>
+       
     </div>
+    <%= link_to 'Back', request.referer, class: 'btn btn-secondary mr-2' %>
   </div>
 <% else %>
   <p>No matching job postings found.</p>
 <% end %>
 
-<%= link_to 'Back', request.referer, class: 'btn btn-secondary' %>
+

@@ -4,51 +4,32 @@ class SavedJobsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @job_seeker = JobSeeker.find(params[:job_seeker_id])
-    @saved_jobs = @job_seeker.saved_jobs
+    @job_seeker = current_user.job_seeker
+    @saved_jobs = @saved_jobs = @job_seeker.job_postings
   end
 
   def save
-    @job_seeker = JobSeeker.find(params[:job_seeker_id])
+    @job_seeker = current_user.job_seeker
     @job_posting = JobPosting.find(params[:id])
+    @job_seeker.job_postings << @job_posting
 
-    existing_saved_job = SavedJob.find_by(job_seeker: @job_seeker, job_posting: @job_posting)
-
-    if existing_saved_job
-      redirect_to job_seeker_saved_jobs_path(@job_seeker), alert: 'Job has already been saved.'
-    else
-      @saved_job = SavedJob.new(job_seeker: @job_seeker, job_posting: @job_posting, date_saved: Time.now)
-      if @saved_job.save
-        redirect_to job_seeker_saved_jobs_path(@job_seeker), notice: 'Job saved successfully.'
-      else
-        redirect_to job_listing_path(@job_posting), alert: 'Job could not be saved.'
-      end
-    end
-  end
-
-  def create
-    @job_seeker = JobSeeker.find(params[:job_seeker_id])
-    @job_posting = JobPosting.find(params[:job_posting_id])
-
-    @saved_job = SavedJob.new(job_seeker: @job_seeker, job_posting: @job_posting, date_saved: Time.now)
-    if @saved_job.save!
-
-      redirect_to job_seeker_saved_jobs_path(@job_seeker), notice: 'Job saved successfully.'
-    else
-      redirect_to job_listing_path(@job_posting), alert: 'Job could not be saved.'
-    end
+    redirect_to saved_jobs_path(job_seeker_id: @job_seeker.id), notice: 'Job saved successfully.'
   end
 
   def destroy
-    @job_seeker = JobSeeker.find(params[:job_seeker_id])
-    @job_posting = JobPosting.find(params[:id])
+    @job_seeker = current_user.job_seeker
+    job_posting_id = params[:id]
+    @job_posting = JobPosting.find(job_posting_id)
 
-    @saved_job = SavedJob.find_by(job_seeker: @job_seeker, job_posting: @job_posting)
-
-    if @saved_job&.destroy
-      redirect_to job_seeker_saved_jobs_path(@job_seeker), notice: 'Job removed from saved list.'
-    else
-      redirect_to job_seeker_saved_jobs_path(@job_seeker), alert: 'Unable to remove the job.'
+    if @job_seeker.job_postings.exists?(job_posting_id)
+      @job_seeker.job_postings.delete(job_posting_id)
+      redirect_to saved_jobs_path(job_seeker_id: @job_seeker.id), notice: 'Job removed from saved list.'
     end
+  end
+ 
+  private
+
+  def saved_job_params
+    params.require(:saved_job).permit!
   end
 end

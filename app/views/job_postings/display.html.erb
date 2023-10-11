@@ -26,8 +26,8 @@
     </div>
   </div>
   <% if current_user.job_seeker? && current_user.job_seeker.present? %>
-   <div class="text-center">
-    <%= link_to 'View Saved Jobs', job_seeker_saved_jobs_path(job_seeker_id: @current_job_seeker.id), class: 'btn btn-success mb-4' %>
+   <div class="text-center ">
+    <%= link_to 'View Saved Jobs',saved_jobs_path(job_seeker_id: @current_job_seeker.id), class: 'btn btn-success mb-4' %>
    </div>
   <% end %>
   <div class="pagination justify-content-center">
