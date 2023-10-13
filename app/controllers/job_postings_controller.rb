@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class JobPostingsController < ApplicationController
-  before_action :set_company_profile, only: %i[new create destroy]
-  before_action :authenticate_user!
+  before_action :set_company_profile, only: %i[index new create destroy]
   layout false, only: [:search]
 
   def index
-    @company_profile = CompanyProfile.find(params[:company_profile_id])
     @job_postings = @company_profile.job_postings
   end
 
   def display
     @job_postings = JobPosting.paginate(page: params[:page], per_page: 3)
+
     @current_job_seeker = current_user.job_seeker
   end
 
   def new
     @job_posting = @company_profile.job_postings.build
+
     respond_to do |format|
       format.html
       format.js
@@ -34,11 +34,13 @@ class JobPostingsController < ApplicationController
   end
 
   def create
-    if current_user.company_profile.present?
-      @job_posting = current_user.company_profile.job_postings.build(job_posting_params)
+    company_profile = current_user.company_profile
+
+    if company_profile.present?
+      @job_posting = company_profile.job_postings.build(job_posting_params)
 
       if @job_posting.save
-        redirect_to company_profile_path(current_user.company_profile),
+        redirect_to company_profile_path(company_profile),
                     notice: 'Job posting was successfully created.'
       else
         render 'new'
@@ -49,7 +51,7 @@ class JobPostingsController < ApplicationController
   end
 
   def search
-    @query = params[:q]
+    @query = params[:term]
     @location = params[:location]
     @salary_range = params[:salary_range]
 
@@ -85,10 +87,6 @@ class JobPostingsController < ApplicationController
 
   def set_company_profile
     @company_profile = CompanyProfile.find(params[:company_profile_id])
-  end
-
-  def set_job_posting
-    @job_posting = @company_profile.job_postings.find(params[:id])
   end
 
   def job_posting_params

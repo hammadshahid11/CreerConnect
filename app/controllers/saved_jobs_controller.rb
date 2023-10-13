@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SavedJobsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @job_seeker = current_user.job_seeker
     @saved_jobs = @saved_jobs = @job_seeker.job_postings

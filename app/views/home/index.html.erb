@@ -2,29 +2,22 @@
 <html>
 <head>
   <title>Job Seeker - CareerConnect</title>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
-  
   <header>
-   
-   
   </header>
-  
-  
+
   <div class="container mt-5 flex-grow-1">
     <%= yield %>
   </div>
-
-  
-  
 </body>
 </html>

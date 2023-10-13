@@ -1,14 +1,3 @@
-
-<script>
-  const bioTextarea = document.getElementById('bio-textarea');
-  const charCount = document.getElementById('char-count');
-
-  bioTextarea.addEventListener('input', function() {
-    const chars = this.value.length;
-    charCount.textContent = chars;
-  });
-</script>  
-
 <div class="modal-body">
 <div class="container mt-5">
   <div class="row justify-content-center">
@@ -19,3 +8,4 @@
      </div>
   </div>
 </div>
+<%= javascript_include_tag 'job_seeker', "data-turbo-track": "reload" %>

@@ -1,73 +1,66 @@
-<div class="modal-body">    
+<div class="modal-body">
   <h1 class="mb-4">Create Job Posting</h1>
+
   <%= form_with(model: [@company_profile,@job_posting], local: true) do |form| %>
-      <% if @job_posting.errors.any? %>
-        <div class="alert alert-danger">
-          <h4><%= pluralize(@job_posting.errors.count, "error") %> prohibited this job posting from being saved:</h4>
-            <ul>
-              <% @job_posting.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+    <% if @job_posting.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(@job_posting.errors.count, "error") %> prohibited this job posting from being saved:</h4>
+        <ul>
+          <% @job_posting.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-        <div class="mb-3">
-          <%= form.label :title, class: "form-label" %>
-          <%= form.text_field :title, class: "form-control" %>
-          <small class="text-muted">Enter the job title (required).</small>
-        </div>
+    <div class="mb-3">
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: "form-control" %>
+      <small class="text-muted">Enter the job title (required).</small>
+    </div>
 
-        <div class="mb-3">
-        <%= form.label :company_name, class: "form-label" %>
-        <%= form.text_field :company_name, class: "form-control" %>
-        <small class="text-muted">Enter the company name (required).</small>
-        </div>
+    <div class="mb-3">
+      <%= form.label :company_name, class: "form-label" %>
+      <%= form.text_field :company_name, class: "form-control" %>
+      <small class="text-muted">Enter the company name (required).</small>
+    </div>
 
-        <div class="mb-3">
-        <%= form.label :salary, class: "form-label" %>
-        <%= form.number_field :salary, class: "form-control" %>
-        <small class="text-muted">Enter the salary (optional).</small>
-        </div>
+    <div class="mb-3">
+      <%= form.label :salary, class: "form-label" %>
+      <%= form.number_field :salary, class: "form-control" %>
+      <small class="text-muted">Enter the salary (optional).</small>
+    </div>
 
-        <div class="mb-3">
-        <%= form.label :qualifications, class: "form-label" %>
-        <%= form.text_area :qualifications, class: "form-control", id: "qualifications-textarea" %>
-        <small class="text-muted">Enter the required qualifications (optional).</small>
-        </div>
+    <div class="mb-3">
+      <%= form.label :qualifications, class: "form-label" %>
+      <%= form.text_area :qualifications, class: "form-control", id: "qualifications-textarea" %>
+      <small class="text-muted">Enter the required qualifications (optional).</small>
+    </div>
 
-        <div class="mb-3">
-          <%= form.label :description, class: "form-label" %>
-          <%= form.text_area :description, class: "form-control", id: "job-description-textarea" %>
-          <small class="text-muted">
-            Enter the job description (maximum 500 characters). Character count: <span id="char-count">0</span>
-          </small>
-        </div>
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description, class: "form-control", id: "job-description-textarea" %>
+      <small class="text-muted">
+        Enter the job description (maximum 500 characters). Character count: <span id="char-count">0</span>
+      </small>
+    </div>
 
-        <div class="mb-3">
-          <%= form.label :location, class: "form-label" %>
-          <%= form.text_field :location, class: "form-control" %>
-          <small class="text-muted">Enter the job location (required).</small>
-        </div>
+    <div class="mb-3">
+      <%= form.label :location, class: "form-label" %>
+      <%= form.text_field :location, class: "form-control" %>
+      <small class="text-muted">Enter the job location (required).</small>
+    </div>
 
-        <div class="mb-3">
-        <%= form.label :application_instructions, class: "form-label" %>
-        <%= form.text_area :application_instructions, class: "form-control", id: "application-instructions-textarea" %>
-        <small class="text-muted">Enter application instructions (optional).</small>
-        </div>
-        <div class="d-grid gap-2">
-          <%= form.submit "Create Job Posting", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+    <div class="mb-3">
+      <%= form.label :application_instructions, class: "form-label" %>
+      <%= form.text_area :application_instructions, class: "form-control", id: "application-instructions-textarea" %>
+      <small class="text-muted">Enter application instructions (optional).</small>
+    </div>
+
+    <div class="d-grid gap-2">
+      <%= form.submit "Create Job Posting", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
 
-
-<script>
-  const jobDescriptionTextarea = document.getElementById('job-description-textarea');
-  const charCount = document.getElementById('char-count');
-
-  jobDescriptionTextarea.addEventListener('input', function() {
-    const chars = this.value.length;
-    charCount.textContent = chars;
-  });
-</script>
+<%= javascript_include_tag 'job_posting', "data-turbo-track": "reload" %>

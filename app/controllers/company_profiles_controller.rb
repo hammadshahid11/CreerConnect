@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class CompanyProfilesController < ApplicationController
-  before_action :authenticate_user!
   authorize_resource
 
   def new
     @company_profile = CompanyProfile.new
+
     respond_to do |format|
       format.html
       format.js
@@ -14,6 +14,7 @@ class CompanyProfilesController < ApplicationController
 
   def create
     @company_profile = current_user.build_company_profile(company_profile_params)
+
     if @company_profile.save
       redirect_to @company_profile
     else
@@ -23,6 +24,7 @@ class CompanyProfilesController < ApplicationController
 
   def show
     @company_profile = current_user.company_profile
+
     return unless @company_profile.nil?
 
     redirect_to new_company_profile_path, notice: 'Please create your company profile.'
@@ -30,6 +32,7 @@ class CompanyProfilesController < ApplicationController
 
   def edit
     @company_profile = current_user.company_profile
+
     respond_to do |format|
       format.html
       format.js
@@ -38,6 +41,7 @@ class CompanyProfilesController < ApplicationController
 
   def update
     @company_profile = current_user.company_profile
+
     if @company_profile.update(company_profile_params)
       redirect_to @company_profile, notice: 'Profile updated successfully.'
     else
