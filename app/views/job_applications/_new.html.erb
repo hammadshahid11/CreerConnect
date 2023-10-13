@@ -1,38 +1,36 @@
-
 <div class="modal-body">
   <div class="container mt-5">
-  <div class="text-center">
-    <h1 class="mb-4">Apply for Job</h1>
-  </div>
+    <div class="text-center">
+      <h1 class="mb-4">Apply for Job</h1>
+    </div>
 
-  <%= form_with(model: @job_application, url: job_applications_path, local: true, html: { multipart: true }) do |form| %>
-    <% if @job_application.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@job_application.errors.count, "error") %> prohibited this job application from being saved:</h2>
+    <%= form_with(model: @job_application, url: job_applications_path, local: true, html: { multipart: true }) do |form| %>
+      <% if @job_application.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@job_application.errors.count, "error") %> prohibited this job application from being saved:</h2>
+          <ul>
+            <% @job_application.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-        <ul>
-          <% @job_application.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+      <div class="form-group">
+        <%= form.label :resume, class: 'form-label' %>
+        <%= form.file_field :resume, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :cover_letter, class: 'form-label' %>
+        <%= form.text_area :cover_letter, class: 'form-control', rows: 5 %>
+      </div>
+
+      <%= form.hidden_field :job_posting_id, value: @job_posting.id %>
+
+      <div class="text-center">
+        <%= form.submit 'Submit Application', class: 'btn btn-primary' %>
       </div>
     <% end %>
-
-    <div class="form-group">
-      <%= form.label :resume, class: 'form-label' %>
-      <%= form.file_field :resume, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :cover_letter, class: 'form-label' %>
-      <%= form.text_area :cover_letter, class: 'form-control', rows: 5 %>
-    </div>
-
-    <%= form.hidden_field :job_posting_id, value: @job_posting.id %>
-
-    <div class="text-center">
-      <%= form.submit 'Submit Application', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
-</div>
+  </div>
 </div>

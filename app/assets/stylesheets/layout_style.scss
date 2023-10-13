@@ -1,40 +1,46 @@
 #navbarNav{
      justify-content: end;
 }
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
 .custom-pagination {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     margin-top: 20px;
-   }
- 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .custom-pagination ul {
-     list-style: none;
-     padding: 0;
-     display: flex;
-   }
- 
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
 .custom-pagination li {
-     margin: 0 10px;
-   }
- 
+  margin: 0 10px;
+}
+
 .custom-pagination a,
 .custom-pagination span {
-     padding: 5px 10px;
-     border: 1px solid #ccc;
-     background-color: #fff;
-     color: #333;
-     text-decoration: none;
-     border-radius: 4px;
-     transition: background-color 0.3s, color 0.3s;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
  }
- 
-   .custom-pagination a:hover {
-     background-color: #007bff;
-     color: #fff;
-   }
- 
-   .custom-pagination .active a {
-     background-color: #007bff;
-     color: #fff;
-   }
+
+.custom-pagination a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.custom-pagination .active a {
+  background-color: #007bff;
+  color: #fff;
+}
