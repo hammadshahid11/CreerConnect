@@ -1,0 +1,50 @@
+<% if @job_postings.any? %>
+  
+    <div class="card">
+      
+      <div class="row justify-content-center">
+        <% @job_postings.each do |job_posting| %>
+          <% if job_posting.status == 'approved' %>
+            <div class="col-md-8 mb-4">
+              <div class="card mt-4">
+                <div class="card-body">
+                  <h2 class="card-title"><strong>Title:</strong> <%= job_posting.title %></h2>
+                  <p class="card-text"><strong>Company:</strong> <%= job_posting.company_name %></p>
+                  <p class="card-text"><strong>Description:</strong> <%= job_posting.description %></p>
+                  <p class="card-text"><strong>Salary:</strong> <%= job_posting.salary %></p>
+                  <p class="card-text"><strong>Location:</strong> <%= job_posting.location %></p>
+
+                  <% if current_user.job_seeker? && current_user.job_seeker.present? %>
+                     <% if current_user.job_seeker.job_postings.exists?(job_posting.id) %>
+                      <%= link_to 'Unsave Job', saved_job_path(job_posting), method: :delete, 
+                      data: { turbo_method: :delete }, class: 'btn btn-danger' %>
+                      <% else %>
+                      <%= link_to 'Save Job', save_saved_job_path( job_posting),
+                      method: :post, class: 'btn btn-primary'%>
+                      
+                    <% end %>
+                    <%= link_to 'Apply Job', new_job_application_path(job_posting_id: job_posting.id), 
+                      {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#ApplYJobmodal-window', class: 'btn btn-primary'}  %> 
+                      <div id="ApplYJobmodal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content"></div>
+                        </div>
+                      </div>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        
+      </div>
+       
+    </div>
+    <%= link_to 'Back', request.referer, class: 'btn btn-secondary mr-2' %>
+  
+<% else %>
+  <p>No matching job postings found.</p>
+<% end %>
+
+

@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <h2>User Management</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+
+      </thead>
+      <tbody>
+      
+        <% @users.each do |user| %>
+           <tr>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td>
+              <div class="btn-group" role="group">
+                <% if user.blocked? %>
+                  <%= button_to 'Unblock', unblock_user_admins_dashboard_index_path(user.id), method: :post, class: "btn btn-success btn-sm mx-1", data: { confirm: 'Unblock this user?' } %>
+                <% else %>
+                  <%= button_to 'Block', block_user_admins_dashboard_index_path(user.id), method: :post, class: "btn btn-danger btn-sm mx-1", data: { confirm: 'Block this user?' } %>
+                <% end %>
+                  <%= button_to 'Delete', delete_user_admins_dashboard_index_path(user.id), method: :post, class: "btn btn-danger btn-sm mx-1", data: { confirm: 'Delete this user?' } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="mt-4">
+    <h3>Site Management</h3>
+    <div>
+    
+    </div>
+  </div>
+
+
+  <% if @job_postings.any? %>
+    <div class="mt-4">
+      <h3>Pending Job Listings</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+      
+          <thead class="thead-dark">
+            <tr>
+              <th>Title</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+      
+            <% @job_postings.each do |job_posting| %>
+              <tr>
+                <td><%= job_posting.title %></td>
+                <td>
+                  <div class="btn-group" role="group">
+                    <%= button_to 'Approve', approve_job_listing_admins_dashboard_path(job_posting.id), method: :post, class: "btn btn-success btn-sm mx-1", data: { confirm: 'Approve this job listing?' } %>
+                    <%= button_to 'Disapprove', disapprove_job_listing_admins_dashboard_path(job_posting.id), method: :post, class: "btn btn-danger btn-sm mx-1", data: { confirm: 'Disapprove this job listing?' } %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% else %>
+    <p>No pending job listings available.</p>
+  <% end %>
+</div>

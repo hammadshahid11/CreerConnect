@@ -1,0 +1,52 @@
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Job Postings</h1>
+
+  <%= form_tag job_search_path, method: :get, remote: true, id: 'search-form', class: "mb-4" do %>
+    <div class="row justify-content-center">
+      <div class="col-md-3">
+        <%= text_field_tag :q, params[:q], class: "form-control", placeholder: 'Keywords' %>
+      </div>
+      <div class="col-md-3">
+        <%= text_field_tag :location, params[:location], class: "form-control", placeholder: 'Location' %>
+      </div>
+      <div class="col-md-2">
+        <%= text_field_tag :salary_range, params[:salary_range], class: "form-control", placeholder: 'Salary Range' %>
+      </div>
+      <div class="col-md-2">
+        <%= submit_tag 'Search',id: "search-btn", class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div id="search-results">
+        <%= render 'search_results', job_postings: @job_postings %>
+      </div>
+    </div>
+  </div>
+  <% if current_user.job_seeker? && current_user.job_seeker.present? %>
+   <div class="text-center ">
+    <%= link_to 'View Saved Jobs',saved_jobs_path(job_seeker_id: @current_job_seeker.id), class: 'btn btn-success mb-4' %>
+   </div>
+  <% end %>
+  <div class="custom-pagination">
+    <%= will_paginate @job_postings, class: 'pagination' %>
+  </div>
+  <div id="hi"></div>
+</div>
+<%= stylesheet_link_tag "layout_style", "data-turbo-track": "reload" %>
+<style>
+
+  .card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; 
+  }
+
+</style>  
+<%= javascript_include_tag 'search_results', "data-turbo-track": "reload" %>
+
+
+
