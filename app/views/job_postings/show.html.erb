@@ -2,30 +2,26 @@
 
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-     
-       <h1>View Job Postings by Company  </h1>
+    <div class="col-md-6">     
+      <h1>View Job Postings by Company </h1>
+
       <% @company_profile.job_postings.each do |job_posting| %>
         <div id="<%= dom_id job_posting %>" class="job-posting" data-turbo-stream="replace">
           <h2><%= job_posting.title %></h2>
           <p><strong>Company:</strong> <%= job_posting.company_name %></p>
           <p><strong>Description:</strong> <%= job_posting.description %></p>
-          
-          
+        
           <%= link_to "View Applicants", view_applicants_company_profile_job_posting_path(job_posting), class: "btn btn-success" %>
-
-
-        <%= link_to "Delete Job Posting",
+          <%= link_to "Delete Job Posting",
             company_profile_job_posting_path(@company_profile, job_posting),
-             method: :delete,
+              method: :delete,
             data: {
             turbo_confirm: "Are you sure you want to delete this job posting?",
             turbo_method: :delete,
             turbo_frame: 'job_postings' 
             },
-        class: "btn btn-danger" %>
-
-        
+            class: "btn btn-danger" 
+          %>
         </div>
       <% end %>
     </div>

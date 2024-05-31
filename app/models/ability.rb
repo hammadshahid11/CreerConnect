@@ -5,6 +5,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new
+
     if user.job_seeker?
       can :manage, JobSeeker, user_id: user.id
     elsif user.company?
